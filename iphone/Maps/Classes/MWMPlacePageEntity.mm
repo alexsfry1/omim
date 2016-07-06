@@ -3,6 +3,7 @@
 #import "MWMMapViewControlsManager.h"
 #import "MWMPlacePageEntity.h"
 #import "MWMPlacePageViewManager.h"
+#import <Crashlytics/Crashlytics.h>
 
 #include "Framework.h"
 
@@ -133,6 +134,7 @@ void initFieldsMap()
   NSNumberFormatter * currencyFormatter = [[NSNumberFormatter alloc] init];
   currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
   currencyFormatter.maximumFractionDigits = 0;
+  CLS_LOG(@"currencyFormatter.currencyCode: %@", currencyFormatter.currencyCode);
   string const currency = currencyFormatter.currencyCode.UTF8String;
   GetFramework().GetBookingApi().GetMinPrice(m_info.GetMetadata().Get(Metadata::FMD_SPONSORED_ID),
                                              currency,
